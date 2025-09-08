@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import apiClient from "../services/api-client";
 
-interface Game {
+export interface Game {
   id: number;
   name: string;
+  background_image: string;
 }
 
 interface GameResponse {
@@ -14,7 +15,7 @@ interface GameResponse {
 const useGames = () => {
   const [games, setGames] = useState<Game[]>([]);
   const [error, setError] = useState("");
-  
+
   useEffect(() => {
     apiClient
       .get<GameResponse>("/games")
