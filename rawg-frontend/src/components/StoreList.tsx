@@ -8,16 +8,16 @@ import {
   Spinner,
 } from "@chakra-ui/react";
 
-import useGenres, { type Genre } from "../hooks/useGenres";
+import useStores, { type Store } from "../hooks/useStores";
 import getCroppedImageUrl from "../services/image-url";
 
 interface Props {
-  onSelectGenre: (genre: Genre | null) => void;
-  selectedGenre: Genre | null;
+  onSelectStore: (store: Store | null) => void;
+  selectedStore: Store | null;
 }
 
-const GenreList = ({ onSelectGenre, selectedGenre }: Props) => {
-  const { genres, error, isLoading } = useGenres();
+const StoreList = ({ onSelectStore, selectedStore }: Props) => {
+  const { stores, error, isLoading } = useStores();
 
   if (error) return null;
 
@@ -25,17 +25,17 @@ const GenreList = ({ onSelectGenre, selectedGenre }: Props) => {
 
   return (
     <>
-      <Button variant="link" onClick={() => onSelectGenre(null)}>
+      <Button variant="link" onClick={() => onSelectStore(null)}>
         <Heading fontSize="2xl" marginBottom={3}>
-          Genres
+          Stores
         </Heading>
       </Button>
       <List>
-        {genres.map((genre) => (
-          <ListItem key={genre.id} padding="5px">
+        {stores.map((store) => (
+          <ListItem key={store.id} padding="5px">
             <HStack>
               <Image
-                src={getCroppedImageUrl(genre.image_background)}
+                src={getCroppedImageUrl(store.image_background)}
                 boxSize="32px"
                 borderRadius={8}
                 objectFit="cover"
@@ -43,12 +43,12 @@ const GenreList = ({ onSelectGenre, selectedGenre }: Props) => {
               <Button
                 variant="link"
                 fontSize="lg"
-                onClick={() => onSelectGenre(genre)}
+                onClick={() => onSelectStore(store)}
                 colorScheme={
-                  genre.id === selectedGenre?.id ? "yellow" : undefined
+                  store.id === selectedStore?.id ? "yellow" : undefined
                 }
               >
-                {genre.name}
+                {store.name}
               </Button>
             </HStack>
           </ListItem>
@@ -58,4 +58,4 @@ const GenreList = ({ onSelectGenre, selectedGenre }: Props) => {
   );
 };
 
-export default GenreList;
+export default StoreList;
