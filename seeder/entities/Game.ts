@@ -6,7 +6,7 @@ import {
   PrimaryGeneratedColumn,
 } from "typeorm";
 import { Genre } from "./Genre";
-import { ParentPlatform } from "./ParentPlatforms";
+import { ParentPlatform } from "./ParentPlatform";
 import { Store } from "./Store";
 
 @Entity("games", { schema: "rawgDatabase" })
