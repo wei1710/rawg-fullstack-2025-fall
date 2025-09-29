@@ -21,7 +21,7 @@ export class Game {
   metacritic?: number;
 
   @Column("varchar", { name: "background_image", nullable: true, length: 255 })
-  backgroundImage?: string;
+  background_image?: string;
 
   @ManyToMany(() => Genre, (genre) => genre.games)
   @JoinTable({

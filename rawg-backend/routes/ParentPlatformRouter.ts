@@ -11,18 +11,19 @@ const parentPlatformRouter = Router();
 
 const parentPlatformRepository = AppDataSource.getRepository(ParentPlatform);
 
-//GET all parent platform
-
+//GET all parent platforms
 parentPlatformRouter.get("/", async (req, res) => {
   try {
-    const parentPlatform = await parentPlatformRepository.find();
+    const parentPlatforms = await parentPlatformRepository.find();
     const response: Response = {
-      count: parentPlatform.length,
-      results: parentPlatform,
+      count: parentPlatforms.length,
+      results: parentPlatforms,
     };
     res.send(response);
   } catch (error) {
-    console.error("Error fetching parent platform:", error);
+    console.error("Error fetching parent platforms:", error);
     res.status(500).send({ error: "Internal server error" });
   }
 });
+
+export default parentPlatformRouter;

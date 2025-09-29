@@ -1,6 +1,6 @@
 import { Router } from "express";
-import { Genre } from "../entities/Genre";
 import { AppDataSource } from "../data-source";
+import { Genre } from "../entities/Genre";
 
 interface Response {
   count: number;
@@ -12,7 +12,6 @@ const genreRouter = Router();
 const genreRepository = AppDataSource.getRepository(Genre);
 
 //GET all genres
-
 genreRouter.get("/", async (req, res) => {
   try {
     const genres = await genreRepository.find();
@@ -26,3 +25,5 @@ genreRouter.get("/", async (req, res) => {
     res.status(500).send({ error: "Internal server error" });
   }
 });
+
+export default genreRouter;

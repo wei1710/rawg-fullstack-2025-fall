@@ -12,7 +12,6 @@ const storeRouter = Router();
 const storeRepository = AppDataSource.getRepository(Store);
 
 //GET all stores
-
 storeRouter.get("/", async (req, res) => {
   try {
     const stores = await storeRepository.find();
@@ -26,3 +25,5 @@ storeRouter.get("/", async (req, res) => {
     res.status(500).send({ error: "Internal server error" });
   }
 });
+
+export default storeRouter;
